@@ -1,3 +1,4 @@
+
 const skills = [
   {skill: 'HTML', level: '3', description: 'I have adequate proficiently using this skill in a variety of applications.'},
   {skill: 'CSS', level: '3', description: 'I have adequate proficiently using this skill in a variety of applications.'},
@@ -12,17 +13,41 @@ const skills = [
   {skill: 'Django', level: '0', description: 'I have not begun my studies of this skill yet.'},
   {skill: 'PostgreSQL', level: '0', description: 'I have not begun my studies of this skill yet.'},
 ];
+  module.exports = {
+    getAll,
+    getOne,
+    create, 
+    deleteOne,
+    update
+  };
+  
+  function update(id, skill) {
+    skills[id] = skill;
+  }
+  
+  function deleteOne(id) {
+    skills.splice(id, 1);
+  }
+  
+  function create(skill) {
+    skills.push(skill);
+  }
+  
+  function getOne(id){
+    return skills[id];
+  }
+  
+  function getAll() {
+    return skills;
+  }
 
-var express = require('express');
-var router = express.Router();
+class Skill {
+  constructor(id, name, experience, description) {
+    this.id = id;
+    this.name = name;
+    this.experience = experience;
+    this.description = description;
+  }
+}
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'My Amazing Developer Skills', 
-    date: req.date
-  });
-});
-
-
-module.exports = router;
+module.exports = Skill;
